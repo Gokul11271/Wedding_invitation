@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased bg-[#0e1628] text-white overflow-x-hidden uppercase;
+  }
+}
+
+@layer utilities {
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      #d4af37 0%,
+      #f2e7c3 25%,
+      #ffd700 50%,
+      #f2e7c3 75%,
+      #d4af37 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    to { background-position: 200% center; }
+  }
+
+  .perspective-1000 { perspective: 1000px; }
+  .preserve-3d { transform-style: preserve-3d; }
+}
