@@ -45,44 +45,6 @@ const LANTERNS = [
   { size: 75, left: '45%', top: '65%', delay: 0.8 },
 ];
 
-function CeremonialRain() {
-  const petals = Array.from({ length: 20 });
-  const colors = ['text-pink-300/40', 'text-yellow-500/40', 'text-orange-400/40'];
-  return (
-    <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-      {petals.map((_, i) => {
-        const color = colors[i % colors.length];
-        const isMarigold = color !== 'text-pink-300/40';
-        return (
-          <motion.div
-            key={i}
-            initial={{
-              opacity: 0,
-              y: -100,
-              x: (Math.random() * 50 + 70) + '%',
-              rotate: 0 
-            }}
-            animate={{
-              opacity: [0, 1, 1, 0],
-              y: ['0vh', '110vh'],
-              x: [ (Math.random() * 50 + 70) + '%', (Math.random() * 50 - 30) + '%' ],
-              rotate: 720
-            }}
-            transition={{
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              delay: Math.random() * 15,
-              ease: "linear"
-            }}
-            className={`absolute ${color} ${isMarigold ? 'text-xl' : 'text-2xl'}`}
-          >
-            {isMarigold ? '🌼' : '🌸'}
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-}
 
 function Thoranam() {
   return (
@@ -323,7 +285,6 @@ export default function App() {
 
   return (
     <>
-      <CeremonialRain />
       <RibbonScroll href="https://share.google/xbCtrxVL6cO7AGYJq" />
       {/* ROYAL SCROLL OPENING OVERLAY */}
       <AnimatePresence>
@@ -845,7 +806,6 @@ export default function App() {
               fire(0.1, { spread: 120, startVelocity: 45 });
             }}
           >
-            <CeremonialRain />
             {/* Footer Background Image with Parallax */}
             <div className="absolute inset-0 z-0">
               <motion.img
