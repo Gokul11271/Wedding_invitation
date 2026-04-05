@@ -106,7 +106,7 @@ function LoadingScreen() {
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
             className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center opacity-40 text-yellow-500"
           >
-             <Kolam />
+            <Kolam />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -123,100 +123,61 @@ function LoadingScreen() {
   );
 }
 
-function MusicToggle() {
+function BackgroundMusic({ autoStart }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/01/18/audio_03d98c2579.mp3"); // Soft Sitar Music
+    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/01/18/audio_03d98c2579.mp3");
     audioRef.current.loop = true;
     return () => {
-      audioRef.current.pause();
+      if (audioRef.current) audioRef.current.pause();
       audioRef.current = null;
     };
   }, []);
 
-  const toggle = () => {
-    if (isPlaying) audioRef.current.pause();
-    else audioRef.current.play();
-    setIsPlaying(!isPlaying);
-  };
+  useEffect(() => {
+    if (autoStart && audioRef.current && !isPlaying) {
+      audioRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch(e => console.log("Autoplay blocked:", e));
+    }
+  }, [autoStart, isPlaying]);
 
-  return (
-    <div className="fixed top-6 right-6 md:top-10 md:right-10 z-[120]">
-      <motion.button
-         whileHover={{ scale: 1.1 }}
-         whileTap={{ scale: 0.9 }}
-         onClick={toggle}
-         className={`relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-xl border border-yellow-500/30 shadow-2xl overflow-hidden group`}
-      >
-        <div className="absolute inset-0 bg-yellow-500/5 group-hover:bg-yellow-500/10 transition-colors"></div>
-        <AnimatePresence mode="wait">
-          {isPlaying ? (
-            <motion.div key="pause" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }}>
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500 stroke-2">
-                 <rect x="6" y="4" width="4" height="16" />
-                 <rect x="14" y="4" width="4" height="16" />
-               </svg>
-            </motion.div>
-          ) : (
-            <motion.div key="play" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }}>
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500 fill-yellow-500/20 stroke-2">
-                 <path d="M5 3l14 9-14 9V3z" />
-               </svg>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        
-        {/* Animated Sound Waves */}
-        {isPlaying && (
-          <div className="absolute bottom-2 left-0 right-0 flex justify-center items-end gap-[2px] h-2">
-             {[0.2, 0.8, 0.4, 1.0, 0.6].map((scale, i) => (
-               <motion.div 
-                  key={i}
-                  animate={{ height: ['4px', '8px', '4px'] }}
-                  transition={{ duration: 0.6 + i*0.1, repeat: Infinity, ease: "easeInOut" }}
-                  className="w-[2px] bg-yellow-500/40 rounded-full"
-               />
-             ))}
-          </div>
-        )}
-      </motion.button>
-    </div>
-  );
+  return null;
 }
 
 function RSVPSection() {
   return (
     <section className="relative w-full z-10 flex flex-col items-center py-24 px-6">
-       <motion.div 
-         initial={{ opacity: 0, y: 30 }}
-         whileInView={{ opacity: 1, y: 0 }}
-         viewport={{ once: true }}
-         className="max-w-xl w-full bg-[#fbf3d5] p-10 md:p-14 rounded-sm shadow-2xl relative overflow-hidden border-x-[12px] border-[#8b4513]/5" 
-         style={{ backgroundImage: `url(${ASSETS.pinkBg})`, backgroundSize: 'cover', backgroundBlendMode: 'multiply' }}>
-         <div className="absolute inset-0 bg-yellow-500/10"></div>
-         <div className="relative z-10 flex flex-col items-center text-center">
-            <h2 className="text-[#8b4513] font-serif text-3xl md:text-4xl tracking-[0.3em] mb-4 uppercase">R.S.V.P</h2>
-            <div className="w-24 h-[1px] bg-[#8b4513]/30 mb-8"></div>
-            <p className="text-[#8b4513]/80 italic mb-10 font-serif tracking-wide">
-              "We hope you will join us in celebrating our love. Please let us know if you can attend."
-            </p>
-            <motion.a 
-               href="https://wa.me/911234567890?text=Hi! We are happy to confirm our attendance for Tamil and Sowmi's Wedding."
-               target="_blank"
-               whileHover={{ scale: 1.05 }}
-               whileTap={{ scale: 0.95 }}
-               className="group relative px-10 py-4 bg-[#8b4513] text-[#fbf3d5] font-serif tracking-[0.2em] uppercase rounded-sm overflow-hidden"
-            >
-               <span className="relative z-10">Confirm via WhatsApp</span>
-               <div className="absolute inset-0 bg-yellow-700 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
-            </motion.a>
-            <p className="mt-8 text-[#8b4513]/60 text-[10px] uppercase tracking-widest font-sans">
-              Kindly RSVP by August 15, 2026
-            </p>
-         </div>
-       </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="max-w-xl w-full bg-[#fbf3d5] p-10 md:p-14 rounded-sm shadow-2xl relative overflow-hidden border-x-[12px] border-[#8b4513]/5"
+        style={{ backgroundImage: `url(${ASSETS.pinkBg})`, backgroundSize: 'cover', backgroundBlendMode: 'multiply' }}>
+        <div className="absolute inset-0 bg-yellow-500/10"></div>
+        <div className="relative z-10 flex flex-col items-center text-center">
+          <h2 className="text-[#8b4513] font-serif text-3xl md:text-4xl tracking-[0.3em] mb-4 uppercase">R.S.V.P</h2>
+          <div className="w-24 h-[1px] bg-[#8b4513]/30 mb-8"></div>
+          <p className="text-[#8b4513]/80 italic mb-10 font-serif tracking-wide">
+            "We hope you will join us in celebrating our love. Please let us know if you can attend."
+          </p>
+          <motion.a
+            href="https://wa.me/911234567890?text=Hi! We are happy to confirm our attendance for Tamil and Sowmi's Wedding."
+            target="_blank"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="group relative px-10 py-4 bg-[#8b4513] text-[#fbf3d5] font-serif tracking-[0.2em] uppercase rounded-sm overflow-hidden"
+          >
+            <span className="relative z-10">Confirm via WhatsApp</span>
+            <div className="absolute inset-0 bg-yellow-700 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+          </motion.a>
+          <p className="mt-8 text-[#8b4513]/60 text-[10px] uppercase tracking-widest font-sans">
+            Kindly RSVP by August 15, 2026
+          </p>
+        </div>
+      </motion.div>
     </section>
   );
 }
@@ -256,18 +217,18 @@ function ParchmentScroll({ href }) {
       {/* Scroll Body */}
       <div className="w-48 h-64 bg-[#fbf3d5] border-x-8 border-[#8b4513]/20 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center p-4 transition-all duration-500 group-hover:h-72">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url(${ASSETS.pinkBg})`, backgroundSize: 'cover' }}></div>
-        
+
         {/* Faded Map Icon */}
         <div className="relative z-10 opacity-30 group-hover:opacity-60 transition-opacity mb-4">
-           <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#8b4513" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-             <path d="M3 6l6 3 6-3 6 3v15l-6-3-6 3-6-3V6z" />
-             <path d="M9 9v12" />
-             <path d="M15 6v12" />
-           </svg>
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#8b4513" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 6l6 3 6-3 6 3v15l-6-3-6 3-6-3V6z" />
+            <path d="M9 9v12" />
+            <path d="M15 6v12" />
+          </svg>
         </div>
 
         <div className="relative z-10 flex flex-col items-center text-center">
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="text-2xl mb-2"
@@ -279,7 +240,7 @@ function ParchmentScroll({ href }) {
           <div className="w-12 h-[1px] bg-[#8b4513]/40 mt-3"></div>
         </div>
       </div>
-      
+
       {/* Side Shadow */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/5 via-transparent to-black/5 pointer-events-none"></div>
     </motion.a>
@@ -299,7 +260,7 @@ function RibbonScroll({ href }) {
   };
 
   return (
-    <div 
+    <div
       onClick={handleClick}
       className="fixed bottom-10 right-6 md:right-12 z-[100] group cursor-pointer"
     >
@@ -309,18 +270,18 @@ function RibbonScroll({ href }) {
         className="relative flex flex-col items-center"
       >
         {/* The Scroll Body (Rolled) */}
-        <motion.div 
-           className="w-10 md:w-12 bg-[#fbf3d5] rounded-lg border-2 border-[#8b4513]/30 shadow-2xl overflow-hidden relative"
-           animate={isUnrolling ? { height: '180px', width: '140px', x: -60, y: -60 } : { height: '100px', width: '45px' }}
-           transition={{ duration: 0.8, ease: "circOut" }}
+        <motion.div
+          className="w-10 md:w-12 bg-[#fbf3d5] rounded-lg border-2 border-[#8b4513]/30 shadow-2xl overflow-hidden relative"
+          animate={isUnrolling ? { height: '180px', width: '140px', x: -60, y: -60 } : { height: '100px', width: '45px' }}
+          transition={{ duration: 0.8, ease: "circOut" }}
         >
           {/* Paper Texture */}
           <div className="absolute inset-0 opacity-20" style={{ backgroundImage: `url(${ASSETS.pinkBg})`, backgroundSize: 'cover' }}></div>
-          
+
           {/* Scroll Content (Visible only when unrolling) */}
           <AnimatePresence>
             {isUnrolling && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center"
@@ -346,14 +307,14 @@ function RibbonScroll({ href }) {
             >
               {/* Ribbon Bow Knot */}
               <div className="w-6 h-6 bg-red-700 rounded-full border border-red-400 flex items-center justify-center">
-                 <div className="w-1 h-1 bg-yellow-400 rounded-full"></div>
+                <div className="w-1 h-1 bg-yellow-400 rounded-full"></div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* Floating Label */}
-        <motion.span 
+        <motion.span
           animate={{ opacity: isUnrolling ? 0 : 1 }}
           className="mt-3 text-yellow-500 font-sans text-[8px] md:text-[10px] tracking-[0.3em] uppercase whitespace-nowrap bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-yellow-500/20"
         >
@@ -461,7 +422,7 @@ export default function App() {
   return (
     <>
       <LoadingScreen />
-      <MusicToggle />
+      <BackgroundMusic autoStart={isOpened} />
       <RibbonScroll href="https://share.google/xbCtrxVL6cO7AGYJq" />
       {/* ROYAL SCROLL OPENING OVERLAY */}
       <AnimatePresence>
@@ -626,7 +587,7 @@ export default function App() {
                   <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-yellow-500 tracking-[0.1em] font-medium drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase text-shimmer">
                     Sowmi
                   </h1>
-                  
+
                   <CountdownTimer targetDate="2026-04-20T09:00:00" />
                 </motion.div>
               </motion.div>
@@ -851,23 +812,23 @@ export default function App() {
                         <p className="text-sm md:text-base tracking-wide opacity-80 mb-6">{event.loc1}</p>
 
                         <div className="flex flex-col gap-4">
-                           <a
-                             href="https://share.google/xbCtrxVL6cO7AGYJq"
-                             target="_blank"
-                             rel="noreferrer"
-                             className="relative inline-block text-[11px] tracking-[0.2em] font-sans uppercase text-[#358579] group-hover:text-[#1a4a44] transition-colors"
-                           >
-                             <span className="relative z-10 font-bold">See the route</span>
-                             <motion.div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#358579] group-hover:w-full transition-all duration-500"></motion.div>
-                           </a>
+                          <a
+                            href="https://share.google/xbCtrxVL6cO7AGYJq"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="relative inline-block text-[11px] tracking-[0.2em] font-sans uppercase text-[#358579] group-hover:text-[#1a4a44] transition-colors"
+                          >
+                            <span className="relative z-10 font-bold">See the route</span>
+                            <motion.div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#358579] group-hover:w-full transition-all duration-500"></motion.div>
+                          </a>
 
-                           <a
-                              href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title + " - Tamil & Sowmi Wedding")}&dates=202604${event.date.split(' ')[2].replace(/\D/g,'')}T${event.start}00Z/202604${event.date.split(' ')[2].replace(/\D/g,'')}T${event.end}00Z&location=${encodeURIComponent(event.loc1)}`}
-                              target="_blank"
-                              className="px-4 py-1.5 bg-[#358579]/10 border border-[#358579]/20 rounded-full text-[9px] tracking-[0.15em] font-sans uppercase text-[#358579] hover:bg-[#358579] hover:text-white transition-all duration-300 flex items-center gap-2"
-                           >
-                              <span>Save the Date</span>
-                           </a>
+                          <a
+                            href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title + " - Tamil & Sowmi Wedding")}&dates=202604${event.date.split(' ')[2].replace(/\D/g, '')}T${event.start}00Z/202604${event.date.split(' ')[2].replace(/\D/g, '')}T${event.end}00Z&location=${encodeURIComponent(event.loc1)}`}
+                            target="_blank"
+                            className="px-4 py-1.5 bg-[#358579]/10 border border-[#358579]/20 rounded-full text-[9px] tracking-[0.15em] font-sans uppercase text-[#358579] hover:bg-[#358579] hover:text-white transition-all duration-300 flex items-center gap-2"
+                          >
+                            <span>Save the Date</span>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -890,7 +851,7 @@ export default function App() {
               </h2>
               <div className="h-[1px] w-24 bg-yellow-500/20 mx-auto mb-10"></div>
             </motion.div>
-            
+
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
