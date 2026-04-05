@@ -46,6 +46,181 @@ const LANTERNS = [
 ];
 
 
+function CountdownTimer({ targetDate }) {
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = new Date(targetDate).getTime() - now;
+      if (distance < 0) {
+        clearInterval(timer);
+        return;
+      }
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  return (
+    <div className="flex gap-3 md:gap-6 mt-8 mb-4">
+      {[
+        { label: 'Days', value: timeLeft.days },
+        { label: 'Hrs', value: timeLeft.hours },
+        { label: 'Min', value: timeLeft.minutes },
+        { label: 'Sec', value: timeLeft.seconds }
+      ].map((item, idx) => (
+        <div key={idx} className="flex flex-col items-center">
+          <div className="w-12 h-12 md:w-16 md:h-16 bg-yellow-500/10 border border-yellow-500/20 backdrop-blur-md rounded-lg flex items-center justify-center mb-1">
+            <span className="text-lg md:text-xl text-yellow-500 font-serif">{item.value}</span>
+          </div>
+          <span className="text-[7px] md:text-[9px] uppercase tracking-[0.2em] text-yellow-500/80 font-medium">{item.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function LoadingScreen() {
+  const [isVisible, setIsVisible] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          exit={{ opacity: 0, scale: 1.1 }}
+          transition={{ duration: 1.2, ease: "circOut" }}
+          className="fixed inset-0 z-[3000] bg-[#0a0f1b] flex flex-col items-center justify-center"
+        >
+          <motion.div
+            animate={{ rotate: [0, 360], scale: [0.9, 1.1, 0.9] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center opacity-40 text-yellow-500"
+          >
+             <Kolam />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: [0, 1, 0], y: 0 }}
+            transition={{ duration: 2.5, repeat: Infinity }}
+            className="absolute bottom-20 flex flex-col items-center gap-3"
+          >
+            <span className="text-yellow-500 font-serif tracking-[0.6em] uppercase text-[10px] md:text-xs">Preparing Celebration</span>
+            <div className="w-12 h-[1px] bg-yellow-500/30"></div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function MusicToggle() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/01/18/audio_03d98c2579.mp3"); // Soft Sitar Music
+    audioRef.current.loop = true;
+    return () => {
+      audioRef.current.pause();
+      audioRef.current = null;
+    };
+  }, []);
+
+  const toggle = () => {
+    if (isPlaying) audioRef.current.pause();
+    else audioRef.current.play();
+    setIsPlaying(!isPlaying);
+  };
+
+  return (
+    <div className="fixed top-6 right-6 md:top-10 md:right-10 z-[120]">
+      <motion.button
+         whileHover={{ scale: 1.1 }}
+         whileTap={{ scale: 0.9 }}
+         onClick={toggle}
+         className={`relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-xl border border-yellow-500/30 shadow-2xl overflow-hidden group`}
+      >
+        <div className="absolute inset-0 bg-yellow-500/5 group-hover:bg-yellow-500/10 transition-colors"></div>
+        <AnimatePresence mode="wait">
+          {isPlaying ? (
+            <motion.div key="pause" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }}>
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500 stroke-2">
+                 <rect x="6" y="4" width="4" height="16" />
+                 <rect x="14" y="4" width="4" height="16" />
+               </svg>
+            </motion.div>
+          ) : (
+            <motion.div key="play" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }}>
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-yellow-500 fill-yellow-500/20 stroke-2">
+                 <path d="M5 3l14 9-14 9V3z" />
+               </svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        
+        {/* Animated Sound Waves */}
+        {isPlaying && (
+          <div className="absolute bottom-2 left-0 right-0 flex justify-center items-end gap-[2px] h-2">
+             {[0.2, 0.8, 0.4, 1.0, 0.6].map((scale, i) => (
+               <motion.div 
+                  key={i}
+                  animate={{ height: ['4px', '8px', '4px'] }}
+                  transition={{ duration: 0.6 + i*0.1, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-[2px] bg-yellow-500/40 rounded-full"
+               />
+             ))}
+          </div>
+        )}
+      </motion.button>
+    </div>
+  );
+}
+
+function RSVPSection() {
+  return (
+    <section className="relative w-full z-10 flex flex-col items-center py-24 px-6">
+       <motion.div 
+         initial={{ opacity: 0, y: 30 }}
+         whileInView={{ opacity: 1, y: 0 }}
+         viewport={{ once: true }}
+         className="max-w-xl w-full bg-[#fbf3d5] p-10 md:p-14 rounded-sm shadow-2xl relative overflow-hidden border-x-[12px] border-[#8b4513]/5" 
+         style={{ backgroundImage: `url(${ASSETS.pinkBg})`, backgroundSize: 'cover', backgroundBlendMode: 'multiply' }}>
+         <div className="absolute inset-0 bg-yellow-500/10"></div>
+         <div className="relative z-10 flex flex-col items-center text-center">
+            <h2 className="text-[#8b4513] font-serif text-3xl md:text-4xl tracking-[0.3em] mb-4 uppercase">R.S.V.P</h2>
+            <div className="w-24 h-[1px] bg-[#8b4513]/30 mb-8"></div>
+            <p className="text-[#8b4513]/80 italic mb-10 font-serif tracking-wide">
+              "We hope you will join us in celebrating our love. Please let us know if you can attend."
+            </p>
+            <motion.a 
+               href="https://wa.me/911234567890?text=Hi! We are happy to confirm our attendance for Tamil and Sowmi's Wedding."
+               target="_blank"
+               whileHover={{ scale: 1.05 }}
+               whileTap={{ scale: 0.95 }}
+               className="group relative px-10 py-4 bg-[#8b4513] text-[#fbf3d5] font-serif tracking-[0.2em] uppercase rounded-sm overflow-hidden"
+            >
+               <span className="relative z-10">Confirm via WhatsApp</span>
+               <div className="absolute inset-0 bg-yellow-700 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+            </motion.a>
+            <p className="mt-8 text-[#8b4513]/60 text-[10px] uppercase tracking-widest font-sans">
+              Kindly RSVP by August 15, 2026
+            </p>
+         </div>
+       </motion.div>
+    </section>
+  );
+}
+
 function Thoranam() {
   return (
     <div className="absolute top-0 left-0 w-full flex justify-around pointer-events-none z-30 opacity-60">
@@ -285,6 +460,8 @@ export default function App() {
 
   return (
     <>
+      <LoadingScreen />
+      <MusicToggle />
       <RibbonScroll href="https://share.google/xbCtrxVL6cO7AGYJq" />
       {/* ROYAL SCROLL OPENING OVERLAY */}
       <AnimatePresence>
@@ -449,6 +626,8 @@ export default function App() {
                   <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-yellow-500 tracking-[0.1em] font-medium drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase text-shimmer">
                     Sowmi
                   </h1>
+                  
+                  <CountdownTimer targetDate="2026-04-20T09:00:00" />
                 </motion.div>
               </motion.div>
 
@@ -628,12 +807,12 @@ export default function App() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-16 md:gap-y-20 w-full max-w-6xl px-6">
               {[
-                { title: "MEHENDI", date: "Friday, March 9th 2026", loc1: "Rambagh, Jaipur", loc2: "6pm Onwards" },
-                { title: "HALDI", date: "Friday, March 10th 2026", loc1: "Rambagh, Jaipur", loc2: "6pm Onwards" },
-                { title: "SANGEET", date: "Friday, March 10th 2026", loc1: "Rambagh, Jaipur", loc2: "6pm Onwards" },
-                { title: "ENGAGEMENT", date: "Friday, March 11th 2026", loc1: "Rambagh, Jaipur", loc2: "6pm Onwards" },
-                { title: "MUHURTHAM", date: "Friday, March 12th 2026", loc1: "Rambagh, Jaipur", loc2: "6pm Onwards" },
-                { title: "RECEPTION", date: "Friday, March 17th 2026", loc1: "Rambagh, Jaipur", loc2: "6pm Onwards" }
+                { title: "MEHENDI", date: "Friday, April 17th 2026", loc1: "Rambagh, Jaipur", start: "1800", end: "2200" },
+                { title: "HALDI", date: "Friday, April 18th 2026", loc1: "Rambagh, Jaipur", start: "1000", end: "1300" },
+                { title: "SANGEET", date: "Friday, April 18th 2026", loc1: "Rambagh, Jaipur", start: "1900", end: "2300" },
+                { title: "ENGAGEMENT", date: "Friday, April 19th 2026", loc1: "Rambagh, Jaipur", start: "1100", end: "1400" },
+                { title: "MUHURTHAM", date: "Friday, April 20th 2026", loc1: "Rambagh, Jaipur", start: "0700", end: "1100" },
+                { title: "RECEPTION", date: "Friday, April 20th 2026", loc1: "Rambagh, Jaipur", start: "1830", end: "2230" }
               ].map((event, idx) => (
                 <motion.div
                   key={event.title}
@@ -669,18 +848,27 @@ export default function App() {
 
                       <div className="flex flex-col items-center text-center text-[#358579]/90 font-serif font-light leading-relaxed space-y-2">
                         <p className="text-[15px] md:text-lg tracking-wide font-medium">{event.date}</p>
-                        <p className="text-sm md:text-base tracking-wide opacity-80">{event.loc1}</p>
-                        <p className="text-sm md:text-base tracking-wide opacity-80 mb-6">{event.loc2}</p>
+                        <p className="text-sm md:text-base tracking-wide opacity-80 mb-6">{event.loc1}</p>
 
-                        <a
-                          href="https://share.google/xbCtrxVL6cO7AGYJq"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="relative inline-block mt-4 text-[13px] tracking-[0.2em] font-sans uppercase text-[#358579] group-hover:text-[#1a4a44] transition-colors"
-                        >
-                          <span className="relative z-10">See the route</span>
-                          <motion.div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#358579] group-hover:w-full transition-all duration-500"></motion.div>
-                        </a>
+                        <div className="flex flex-col gap-4">
+                           <a
+                             href="https://share.google/xbCtrxVL6cO7AGYJq"
+                             target="_blank"
+                             rel="noreferrer"
+                             className="relative inline-block text-[11px] tracking-[0.2em] font-sans uppercase text-[#358579] group-hover:text-[#1a4a44] transition-colors"
+                           >
+                             <span className="relative z-10 font-bold">See the route</span>
+                             <motion.div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#358579] group-hover:w-full transition-all duration-500"></motion.div>
+                           </a>
+
+                           <a
+                              href={`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title + " - Tamil & Sowmi Wedding")}&dates=202604${event.date.split(' ')[2].replace(/\D/g,'')}T${event.start}00Z/202604${event.date.split(' ')[2].replace(/\D/g,'')}T${event.end}00Z&location=${encodeURIComponent(event.loc1)}`}
+                              target="_blank"
+                              className="px-4 py-1.5 bg-[#358579]/10 border border-[#358579]/20 rounded-full text-[9px] tracking-[0.15em] font-sans uppercase text-[#358579] hover:bg-[#358579] hover:text-white transition-all duration-300 flex items-center gap-2"
+                           >
+                              <span>Save the Date</span>
+                           </a>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -711,6 +899,8 @@ export default function App() {
               Use the golden scroll on the right to navigate to the venue
             </motion.p>
           </section>
+
+          <RSVPSection />
 
           {/* PINK BRIDE AND GROOM SECTION */}
           <section className="relative w-full z-10 flex flex-col items-center pt-24 md:pt-32 pb-0">
