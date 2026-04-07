@@ -574,17 +574,17 @@ export default function App() {
                   animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-yellow-500 tracking-[0.1em] font-medium drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase text-shimmer">
+                  <h1 className="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-yellow-500 tracking-[0.1em] font-medium drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase text-shimmer px-4">
                     Tamilraj
                   </h1>
-                  <div className="flex items-center justify-center gap-6 my-6">
-                    <div className="h-[1px] w-12 bg-yellow-500/40"></div>
-                    <p className="font-serif text-2xl md:text-4xl text-yellow-200 italic lowercase opacity-80">
+                  <div className="flex items-center justify-center gap-4 md:gap-6 my-4 md:my-6">
+                    <div className="h-[1px] w-8 md:w-12 bg-yellow-500/40"></div>
+                    <p className="font-serif text-xl sm:text-2xl md:text-4xl text-yellow-200 italic lowercase opacity-80">
                       weds
                     </p>
-                    <div className="h-[1px] w-12 bg-yellow-500/40"></div>
+                    <div className="h-[1px] w-8 md:w-12 bg-yellow-500/40"></div>
                   </div>
-                  <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-yellow-500 tracking-[0.1em] font-medium drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase text-shimmer">
+                  <h1 className="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-yellow-500 tracking-[0.1em] font-medium drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase text-shimmer px-4">
                     Sowmiya
                   </h1>
 
@@ -651,15 +651,17 @@ export default function App() {
               With the divine blessings of our ancestors
             </motion.p>
 
-            {/* 4. Parent Names 1 */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 1, delay: 0.1 }}
-              className="font-medium tracking-wide mb-6 text-sm md:text-base lg:text-lg"
+              className="font-medium tracking-wide mb-6 text-sm md:text-base lg:text-lg text-center px-4 leading-relaxed flex flex-col md:block gap-1"
             >
-              Smt. S. தமிழ்மணி (S. Tamilmani) & Shri N.V. சக்திவேல் (N.V. Sakthivel)
+              <span>Smt. S. தமிழ்மணி (S. Tamilmani)</span>
+              <span className="md:hidden text-yellow-500/50 text-xs italic">&</span>
+              <span className="hidden md:inline"> & </span>
+              <span>Shri N.V. சக்திவேல் (N.V. Sakthivel)</span>
             </motion.p>
 
             {/* 5. Divider Line */}
@@ -671,15 +673,17 @@ export default function App() {
               className="h-[1px] bg-[#f2e7c3] my-2"
             ></motion.div>
 
-            {/* 6. Parent Names 2 */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 1 }}
-              className="font-medium tracking-wide mt-6 mb-16 text-sm md:text-base lg:text-lg"
+              className="font-medium tracking-wide mt-6 mb-16 text-sm md:text-base lg:text-lg text-center px-4 leading-relaxed flex flex-col md:block gap-1"
             >
-              Smt. R. பத்மா (R. Padma) & Shri P.K. ராமன் (P.K. Raman)
+              <span>Smt. R. பத்மா (R. Padma)</span>
+              <span className="md:hidden text-yellow-500/50 text-xs italic">&</span>
+              <span className="hidden md:inline"> & </span>
+              <span>Shri P.K. ராமன் (P.K. Raman)</span>
             </motion.p>
 
             {/* 7. INVITE text */}
@@ -688,9 +692,9 @@ export default function App() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 1 }}
-              className="relative py-12"
+              className="relative py-12 text-center px-4 w-full"
             >
-              <h2 className="text-4xl md:text-6xl tracking-[0.3em] font-medium font-serif uppercase">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl tracking-[0.2em] md:tracking-[0.3em] font-medium font-serif uppercase">
                 Wedding Invitation
               </h2>
               <div className="absolute -inset-4 border border-yellow-500/10 rounded-full scale-110 pointer-events-none"></div>
@@ -713,15 +717,29 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 1.2 }}
-              className="flex flex-col items-center mb-10"
+              className="flex flex-col items-center mb-10 text-center px-2 w-full"
             >
-              <h1 className="text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide mb-2 line-clamp-1">S. Tamilraj <span className="text-xl md:text-2xl opacity-60">D.Pharm</span></h1>
-              <span className="text-4xl md:text-5xl text-[#f5df9a] italic mb-2">&</span>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide line-clamp-1">Dr. R. Sowmiya <span className="text-xl md:text-2xl opacity-60">B.S.M.S</span></h1>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide mb-4 leading-tight flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full">
+                <span>S. Tamilraj</span>
+                <span className="text-lg sm:text-xl md:text-2xl opacity-80 md:opacity-60 font-sans tracking-widest bg-yellow-500/10 md:bg-transparent px-4 py-1 md:p-0 rounded-full">D.Pharm</span>
+              </h1>
+              <span className="text-4xl md:text-5xl text-[#f5df9a] italic mb-4 my-2 opacity-60 font-serif w-full flex justify-center">&</span>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide leading-tight flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full">
+                <span>Dr. R. Sowmiya</span>
+                <span className="text-lg sm:text-xl md:text-2xl opacity-80 md:opacity-60 font-sans tracking-widest bg-yellow-500/10 md:bg-transparent px-4 py-1 md:p-0 rounded-full">B.S.M.S</span>
+              </h1>
             </motion.div>
 
-            {/* 10. Daughter of */}
+            {/* 10. And Their Beloved Family */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 1 }}
+              className="text-lg md:text-xl lg:text-2xl tracking-[0.1em] font-medium font-serif mt-4 mb-8 opacity-90 text-center w-full px-4"
+            >
               And Their Beloved Families
+            </motion.p>
 
             {/* 12. On the following events */}
             <motion.p
