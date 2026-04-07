@@ -164,7 +164,7 @@ function RSVPSection() {
             "We hope you will join us in celebrating our love. Please let us know if you can attend."
           </p>
           <motion.a
-            href="https://wa.me/911234567890?text=Hi! We are happy to confirm our attendance for Tamil and Sowmi's Wedding."
+            href="https://wa.me/919965270370?text=Hi! We are happy to confirm our attendance for Tamilraj and Sowmiya's Wedding."
             target="_blank"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -575,7 +575,7 @@ export default function App() {
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-yellow-500 tracking-[0.1em] font-medium drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase text-shimmer">
-                    Tamil
+                    Tamilraj
                   </h1>
                   <div className="flex items-center justify-center gap-6 my-6">
                     <div className="h-[1px] w-12 bg-yellow-500/40"></div>
@@ -585,10 +585,10 @@ export default function App() {
                     <div className="h-[1px] w-12 bg-yellow-500/40"></div>
                   </div>
                   <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl text-yellow-500 tracking-[0.1em] font-medium drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase text-shimmer">
-                    Sowmi
+                    Sowmiya
                   </h1>
 
-                  <CountdownTimer targetDate="2026-04-20T09:00:00" />
+                  <CountdownTimer targetDate="2026-04-19T09:00:00" />
                 </motion.div>
               </motion.div>
 
@@ -599,7 +599,7 @@ export default function App() {
                 transition={{ delay: 2.5, duration: 1 }}
                 className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
               >
-                <span className="text-yellow-500/40 font-sans text-[10px] tracking-[0.3em] uppercase">Scroll to explore</span>
+                <span className="text-yellow-500/40 font-sans text-[10px] tracking-[0.3em] uppercase">Scroll to learn more</span>
                 <motion.div
                   animate={{ y: [0, 8, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -659,7 +659,7 @@ export default function App() {
               transition={{ duration: 1, delay: 0.1 }}
               className="font-medium tracking-wide mb-6 text-sm md:text-base lg:text-lg"
             >
-              Smt. Parvathi Ammal & Shri Krishnan Iyer
+              Smt. S. தமிழ்மணி (S. Tamilmani) & Shri N.V. சக்திவேல் (N.V. Sakthivel)
             </motion.p>
 
             {/* 5. Divider Line */}
@@ -679,7 +679,7 @@ export default function App() {
               transition={{ duration: 1 }}
               className="font-medium tracking-wide mt-6 mb-16 text-sm md:text-base lg:text-lg"
             >
-              Smt. Kamakshi Ammal & Shri Srinivasan Iyer
+              Smt. R. பத்மா (R. Padma) & Shri P.K. ராமன் (P.K. Raman)
             </motion.p>
 
             {/* 7. INVITE text */}
@@ -715,32 +715,13 @@ export default function App() {
               transition={{ duration: 1.2 }}
               className="flex flex-col items-center mb-10"
             >
-              <h1 className="text-6xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide mb-2">Tamil</h1>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide mb-2 line-clamp-1">S. Tamilraj <span className="text-xl md:text-2xl opacity-60">D.Pharm</span></h1>
               <span className="text-4xl md:text-5xl text-[#f5df9a] italic mb-2">&</span>
-              <h1 className="text-6xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide">Sowmi</h1>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide line-clamp-1">Dr. R. Sowmiya <span className="text-xl md:text-2xl opacity-60">B.S.M.S</span></h1>
             </motion.div>
 
             {/* 10. Daughter of */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1 }}
-              className="text-sm md:text-base mb-2 opacity-90"
-            >
-              Daughter of
-            </motion.p>
-
-            {/* 11. Final Parent Names */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1, delay: 0.1 }}
-              className="font-medium tracking-wide mb-20 text-sm md:text-base lg:text-lg"
-            >
-              Smt. Parvathi & Shri K. Ramaswamy
-            </motion.p>
+              And Their Beloved Families
 
             {/* 12. On the following events */}
             <motion.p
@@ -768,12 +749,8 @@ export default function App() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-x-16 md:gap-y-20 w-full max-w-6xl px-6">
               {[
-                { title: "MEHENDI", date: "Friday, April 17th 2026", loc1: "Rambagh, Jaipur", start: "1800", end: "2200" },
-                { title: "HALDI", date: "Friday, April 18th 2026", loc1: "Rambagh, Jaipur", start: "1000", end: "1300" },
-                { title: "SANGEET", date: "Friday, April 18th 2026", loc1: "Rambagh, Jaipur", start: "1900", end: "2300" },
-                { title: "ENGAGEMENT", date: "Friday, April 19th 2026", loc1: "Rambagh, Jaipur", start: "1100", end: "1400" },
-                { title: "MUHURTHAM", date: "Friday, April 20th 2026", loc1: "Rambagh, Jaipur", start: "0700", end: "1100" },
-                { title: "RECEPTION", date: "Friday, April 20th 2026", loc1: "Rambagh, Jaipur", start: "1830", end: "2230" }
+                { title: "MUHURTHAM", date: "Sunday, April 19th 2026", loc1: "D.S. Mahal, Sathyamangalam", start: "0900", end: "1000", href: "https://maps.app.goo.gl/k98Z5P9r8Y9N2", note: "Auspicious Timing: 9:00 AM - 10:00 AM (குருபெயர்ச்சி நேரம்)" },
+                { title: "RECEPTION", date: "Monday, April 20th 2026", loc1: "Sri Kuppimandapasamy Temple, Pasumalai, Gopi", start: "0600", end: "0735", href: "https://maps.app.goo.gl/k98Z5P9r8Y9N2", note: "6:00 AM - 7:35 AM" }
               ].map((event, idx) => (
                 <motion.div
                   key={event.title}
@@ -809,11 +786,12 @@ export default function App() {
 
                       <div className="flex flex-col items-center text-center text-[#358579]/90 font-serif font-light leading-relaxed space-y-2">
                         <p className="text-[15px] md:text-lg tracking-wide font-medium">{event.date}</p>
-                        <p className="text-sm md:text-base tracking-wide opacity-80 mb-6">{event.loc1}</p>
+                        <p className="text-sm md:text-base tracking-wide opacity-80 mb-2">{event.loc1}</p>
+                        <p className="text-[10px] md:text-xs tracking-[0.1em] text-yellow-500/60 font-medium mb-6">{event.note}</p>
 
                         <div className="flex flex-col gap-4">
                           <a
-                            href="https://share.google/xbCtrxVL6cO7AGYJq"
+                            href={event.href}
                             target="_blank"
                             rel="noreferrer"
                             className="relative inline-block text-[11px] tracking-[0.2em] font-sans uppercase text-[#358579] group-hover:text-[#1a4a44] transition-colors"
@@ -863,6 +841,88 @@ export default function App() {
 
           <RSVPSection />
 
+          {/* FAMILY & RELATIVES SECTION */}
+          <section className="relative w-full z-10 flex flex-col items-center py-32 px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-20"
+            >
+              <h2 className="font-serif text-[#f2e7c3] text-4xl md:text-5xl uppercase tracking-[0.3em] font-light">With Best Compliments</h2>
+              <div className="h-[1px] w-32 bg-yellow-500/30 mx-auto mt-6"></div>
+              <p className="text-yellow-500/60 font-serif italic mt-4">Family & Relatives</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative w-full max-w-2xl px-6"
+            >
+              <div className="absolute -inset-4 bg-yellow-500/5 blur-3xl rounded-full opacity-30 animate-pulse"></div>
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="relative bg-white/5 border border-white/10 backdrop-blur-xl p-10 md:p-16 rounded-[2rem] text-center shadow-2xl overflow-hidden group"
+              >
+                {/* Decorative particles */}
+                <motion.div 
+                  animate={{ 
+                    rotate: [0, 360],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  className="absolute -top-20 -right-20 w-40 h-40 bg-yellow-500/10 rounded-full blur-2xl"
+                />
+                
+                <div className="relative z-10">
+                  
+                  <h3 className="font-serif text-[#f2e7c3] text-2xl md:text-4xl uppercase tracking-[0.2em] mb-4">
+                    Family & Friends
+                  </h3>
+                  <div className="w-16 h-[1px] bg-yellow-500/30 mx-auto mb-8"></div>
+                  
+                  <p className="text-[#f2e7c3]/70 font-serif italic text-base md:text-lg leading-relaxed max-w-sm mx-auto">
+                    Together with our relatives and well-wishers, we welcome you to celebrate this joyous occasion.
+                  </p>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Travel Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-32 w-full max-w-lg bg-[#358579]/10 border border-yellow-500/20 rounded-2xl p-10 text-center"
+            >
+              <div className="flex flex-col items-center mb-6">
+                <CarFront className="w-10 h-10 text-yellow-500 mb-4" />
+                <h3 className="font-serif text-[#f2e7c3] text-2xl uppercase tracking-widest">Travel Information</h3>
+              </div>
+              <p className="text-[#f2e7c3]/80 font-serif italic mb-6">Available Bus Routes to the Venue:</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                {["7", "7A", "7C", "7D", "ATC 7"].map(bus => (
+                  <span key={bus} className="px-4 py-2 bg-yellow-500/20 border border-yellow-500/40 rounded-lg text-yellow-500 font-bold tracking-widest">
+                    {bus}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Contact Details */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-24 w-full max-w-4xl">
+              <div className="bg-yellow-500/5 p-8 rounded-2xl border border-yellow-500/10 text-center">
+                <h4 className="text-yellow-500 font-serif text-xl tracking-[0.2em] uppercase mb-4">Groom's Family</h4>
+                <p className="text-[#f2e7c3] font-serif text-lg">99652 70370</p>
+              </div>
+              <div className="bg-yellow-500/5 p-8 rounded-2xl border border-yellow-500/10 text-center">
+                <h4 className="text-yellow-500 font-serif text-xl tracking-[0.2em] uppercase mb-4">Bride's Family</h4>
+                <p className="text-[#f2e7c3] font-serif text-lg">99760 72874</p>
+              </div>
+            </div>
+          </section>
+
           {/* PINK BRIDE AND GROOM SECTION */}
           <section className="relative w-full z-10 flex flex-col items-center pt-24 md:pt-32 pb-0">
             {/* Thoranam Garland */}
@@ -898,45 +958,6 @@ export default function App() {
                 complete and our path ahead blessed.
               </p>
 
-              {/* Photo Frame Container */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.2, delay: 0.2 }}
-                className="relative w-[85%] sm:w-[50%] md:w-[40%] max-w-[500px]"
-              >
-                <img src={ASSETS.bgGroomFrame} alt="Ornate Frame" className="relative z-20 w-full h-auto drop-shadow-2xl" />
-
-                {/* Decorative Deepams around the frame */}
-                <motion.div
-                  animate={{ opacity: [0.4, 0.8, 0.4] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute -left-4 top-[40%] text-2xl z-30 drop-shadow-lg"
-                >🪔</motion.div>
-                <motion.div
-                  animate={{ opacity: [0.4, 0.8, 0.4] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                  className="absolute -right-4 top-[40%] text-2xl z-30 drop-shadow-lg"
-                >🪔</motion.div>
-
-                {/* Photo container fitting the mirror */}
-                <div
-                  className="absolute z-10 overflow-hidden bg-[#2a1a1f] flex items-center justify-center"
-                  style={{
-                    top: '18%',
-                    bottom: '8%',
-                    left: '17%',
-                    right: '17%',
-                    borderRadius: '50% 50% 12% 12% / 30% 30% 6% 6%'
-                  }}
-                >
-                  <div className="flex flex-col items-center gap-2 opacity-30">
-                    <span className="text-white font-serif italic tracking-[0.2em] text-lg">Tamil & Sowmi</span>
-                    <span className="text-white/50 font-sans tracking-[0.2em] text-[10px] uppercase">Cherished Moments</span>
-                  </div>
-                </div>
-              </motion.div>
             </motion.div>
           </section>
 
@@ -1009,10 +1030,10 @@ export default function App() {
                 <div className="h-[1px] w-48 bg-gradient-to-r from-transparent via-yellow-500/40 to-transparent mb-12"></div>
                 <div className="flex flex-col items-center gap-3">
                   <p className="text-shimmer text-3xl md:text-4xl lg:text-5xl tracking-[0.15em] uppercase font-serif font-medium">
-                    Tamil <span className="lowercase italic font-light text-2xl md:text-3xl mx-2 opacity-60">and</span> Sowmi
+                    Tamilraj <span className="lowercase italic font-light text-2xl md:text-3xl mx-2 opacity-60">and</span> Sowmiya
                   </p>
                   <p className="text-yellow-500/40 font-sans tracking-[0.6em] text-[10px] md:text-xs uppercase mt-6">
-                    #TamilWedsSowmi
+                    #TamilrajWedsSowmiya
                   </p>
                 </div>
               </motion.div>
