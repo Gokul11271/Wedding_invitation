@@ -249,6 +249,14 @@ function ParchmentScroll({ href }) {
 
 function RibbonScroll({ href }) {
   const [isUnrolling, setIsUnrolling] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile(); // Check initially
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -262,7 +270,7 @@ function RibbonScroll({ href }) {
   return (
     <div
       onClick={handleClick}
-      className="fixed bottom-10 right-6 md:right-12 z-[100] group cursor-pointer"
+      className="fixed bottom-6 right-4 md:bottom-10 md:right-12 z-[100] group cursor-pointer"
     >
       <motion.div
         animate={isUnrolling ? { rotate: [0, -10, 5, 0], scale: 1.1 } : { y: [0, -10, 0] }}
@@ -271,8 +279,8 @@ function RibbonScroll({ href }) {
       >
         {/* The Scroll Body (Rolled) */}
         <motion.div
-          className="w-10 md:w-12 bg-[#fbf3d5] rounded-lg border-2 border-[#8b4513]/30 shadow-2xl overflow-hidden relative"
-          animate={isUnrolling ? { height: '180px', width: '140px', x: -60, y: -60 } : { height: '100px', width: '45px' }}
+          className="bg-[#fbf3d5] rounded-lg border-2 border-[#8b4513]/30 shadow-2xl overflow-hidden relative"
+          animate={isUnrolling ? { height: '180px', width: '140px', x: -60, y: -60 } : { height: isMobile ? '80px' : '100px', width: isMobile ? '35px' : '45px', x: 0, y: 0 }}
           transition={{ duration: 0.8, ease: "circOut" }}
         >
           {/* Paper Texture */}
@@ -575,7 +583,7 @@ export default function App() {
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <h1 className="font-serif text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-yellow-500 tracking-[0.1em] font-medium drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] uppercase text-shimmer px-4">
-                    Tamilraj
+                    Tamilarasu
                   </h1>
                   <div className="flex items-center justify-center gap-4 md:gap-6 my-4 md:my-6">
                     <div className="h-[1px] w-8 md:w-12 bg-yellow-500/40"></div>
@@ -720,7 +728,7 @@ export default function App() {
               className="flex flex-col items-center mb-10 text-center px-2 w-full"
             >
               <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide mb-4 leading-tight flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full">
-                <span>S. Tamilraj</span>
+                <span>S. Tamilarasu</span>
                 <span className="text-lg sm:text-xl md:text-2xl opacity-80 md:opacity-60 font-sans tracking-widest bg-yellow-500/10 md:bg-transparent px-4 py-1 md:p-0 rounded-full">D.Pharm</span>
               </h1>
               <span className="text-4xl md:text-5xl text-[#f5df9a] italic mb-4 my-2 opacity-60 font-serif w-full flex justify-center">&</span>
@@ -759,9 +767,9 @@ export default function App() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center mb-20 w-full"
+              className="text-center mb-12 md:mb-20 w-full px-4"
             >
-              <h2 className="font-serif text-[#f2e7c3] text-4xl md:text-5xl uppercase tracking-[0.3em] font-light">Events</h2>
+              <h2 className="font-serif text-[#f2e7c3] text-3xl md:text-5xl uppercase tracking-[0.2em] md:tracking-[0.3em] font-light">Events</h2>
               <div className="h-[1px] w-32 bg-yellow-500/30 mx-auto mt-6"></div>
             </motion.div>
 
@@ -1048,10 +1056,10 @@ export default function App() {
                 <div className="h-[1px] w-48 bg-gradient-to-r from-transparent via-yellow-500/40 to-transparent mb-12"></div>
                 <div className="flex flex-col items-center gap-3">
                   <p className="text-shimmer text-3xl md:text-4xl lg:text-5xl tracking-[0.15em] uppercase font-serif font-medium">
-                    Tamilraj <span className="lowercase italic font-light text-2xl md:text-3xl mx-2 opacity-60">and</span> Sowmiya
+                   Tamilarasu <span className="lowercase italic font-light text-2xl md:text-3xl mx-2 opacity-60">and</span> Sowmiya
                   </p>
                   <p className="text-yellow-500/40 font-sans tracking-[0.6em] text-[10px] md:text-xs uppercase mt-6">
-                    #TamilrajWedsSowmiya
+                    #TamilarasuWedsSowmiya
                   </p>
                 </div>
               </motion.div>
