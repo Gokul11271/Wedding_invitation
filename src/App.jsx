@@ -124,27 +124,31 @@ function LoadingScreen() {
 }
 
 function BackgroundMusic({ autoStart }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
-    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/01/18/audio_03d98c2579.mp3");
-    audioRef.current.loop = true;
+    const handleInteraction = () => setHasInteracted(true);
+    window.addEventListener('click', handleInteraction);
+    window.addEventListener('touchstart', handleInteraction);
     return () => {
-      if (audioRef.current) audioRef.current.pause();
-      audioRef.current = null;
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
     };
   }, []);
 
-  useEffect(() => {
-    if (autoStart && audioRef.current && !isPlaying) {
-      audioRef.current.play()
-        .then(() => setIsPlaying(true))
-        .catch(e => console.log("Autoplay blocked:", e));
-    }
-  }, [autoStart, isPlaying]);
+  if (!autoStart || !hasInteracted) return null;
 
-  return null;
+  return (
+    <div className="fixed opacity-0 pointer-events-none" style={{ left: '-1000px', top: '-1000px' }}>
+      <iframe
+        width="100"
+        height="100"
+        src="https://www.youtube.com/embed/B2UBMTA57JI?start=248&autoplay=1&loop=1&playlist=B2UBMTA57JI&controls=0&modestbranding=1"
+        title="BGM"
+        allow="autoplay"
+      ></iframe>
+    </div>
+  );
 }
 
 function RSVPSection() {
