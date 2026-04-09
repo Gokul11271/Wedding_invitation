@@ -648,52 +648,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* 3. Heavenly Blessings */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1 }}
-              className="italic tracking-[0.2em] mb-4 opacity-80 text-sm md:text-base font-serif"
-            >
-              With the divine blessings of our ancestors
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1, delay: 0.1 }}
-              className="font-medium tracking-wide mb-6 text-sm md:text-base lg:text-lg text-center px-4 leading-relaxed flex flex-col md:block gap-1"
-            >
-              <span>Smt. S. தமிழ்மணி (S. Tamilmani)</span>
-              <span className="md:hidden text-yellow-500/50 text-xs italic">&</span>
-              <span className="hidden md:inline"> & </span>
-              <span>Shri N.V. சக்திவேல் (N.V. Sakthivel)</span>
-            </motion.p>
-
-            {/* 5. Divider Line */}
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              whileInView={{ opacity: 0.4, width: "64px" }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="h-[1px] bg-[#f2e7c3] my-2"
-            ></motion.div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 1 }}
-              className="font-medium tracking-wide mt-6 mb-16 text-sm md:text-base lg:text-lg text-center px-4 leading-relaxed flex flex-col md:block gap-1"
-            >
-              <span>Smt. R. பத்மா (R. Padma)</span>
-              <span className="md:hidden text-yellow-500/50 text-xs italic">&</span>
-              <span className="hidden md:inline"> & </span>
-              <span>Shri P.K. ராமன் (P.K. Raman)</span>
-            </motion.p>
-
             {/* 7. INVITE text */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -727,15 +681,27 @@ export default function App() {
               transition={{ duration: 1.2 }}
               className="flex flex-col items-center mb-10 text-center px-2 w-full"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide mb-4 leading-tight flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full">
-                <span>S. Tamilarasu</span>
-                <span className="text-lg sm:text-xl md:text-2xl opacity-80 md:opacity-60 font-sans tracking-widest bg-yellow-500/10 md:bg-transparent px-4 py-1 md:p-0 rounded-full">D.Pharm</span>
-              </h1>
-              <span className="text-4xl md:text-5xl text-[#f5df9a] italic mb-4 my-2 opacity-60 font-serif w-full flex justify-center">&</span>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide leading-tight flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full">
-                <span>Dr. R. Sowmiya</span>
-                <span className="text-lg sm:text-xl md:text-2xl opacity-80 md:opacity-60 font-sans tracking-widest bg-yellow-500/10 md:bg-transparent px-4 py-1 md:p-0 rounded-full">B.S.M.S</span>
-              </h1>
+              <div className="flex flex-col items-center w-full">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide mb-2 leading-tight flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full">
+                  <span>S. Tamilarasu</span>
+                  <span className="text-lg sm:text-xl md:text-2xl opacity-80 md:opacity-60 font-sans tracking-widest bg-yellow-500/10 md:bg-transparent px-4 py-1 md:p-0 rounded-full">D.Pharm</span>
+                </h1>
+                <p className="text-sm md:text-base text-[#f2e7c3] opacity-80 font-sans tracking-wide mt-2">
+                  S/o திரு. N.V. செல்வராஜ் - திருமதி. S. தங்கமணி
+                </p>
+              </div>
+
+              <span className="text-4xl md:text-5xl text-[#f5df9a] italic my-6 opacity-60 font-serif w-full flex justify-center">&</span>
+              
+              <div className="flex flex-col items-center w-full">
+                <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide mb-2 leading-tight flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full">
+                  <span>Dr. R. Sowmiya</span>
+                  <span className="text-lg sm:text-xl md:text-2xl opacity-80 md:opacity-60 font-sans tracking-widest bg-yellow-500/10 md:bg-transparent px-4 py-1 md:p-0 rounded-full">B.S.M.S</span>
+                </h1>
+                <p className="text-sm md:text-base text-[#f2e7c3] opacity-80 font-sans tracking-wide mt-2">
+                  D/o திரு. P.K. ராமசாமி - திருமதி. R. புஷ்பா
+                </p>
+              </div>
             </motion.div>
 
             {/* 10. And Their Beloved Family */}
