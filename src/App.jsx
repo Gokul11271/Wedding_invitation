@@ -918,11 +918,11 @@ export default function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-24 w-full max-w-4xl">
               <div className="bg-yellow-500/5 p-8 rounded-2xl border border-yellow-500/10 text-center">
                 <h4 className="text-yellow-500 font-serif text-xl tracking-[0.2em] uppercase mb-4">Groom's Family</h4>
-                <p className="text-[#f2e7c3] font-serif text-lg">99652 70370</p>
+                <p className="text-[#f2e7c3] font-serif text-lg">6379912268</p>
               </div>
               <div className="bg-yellow-500/5 p-8 rounded-2xl border border-yellow-500/10 text-center">
                 <h4 className="text-yellow-500 font-serif text-xl tracking-[0.2em] uppercase mb-4">Bride's Family</h4>
-                <p className="text-[#f2e7c3] font-serif text-lg">99760 72874</p>
+                <p className="text-[#f2e7c3] font-serif text-lg">81247 17716</p>
               </div>
             </div>
           </section>
