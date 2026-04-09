@@ -124,31 +124,27 @@ function LoadingScreen() {
 }
 
 function BackgroundMusic({ autoStart }) {
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
 
   useEffect(() => {
-    const handleInteraction = () => setHasInteracted(true);
-    window.addEventListener('click', handleInteraction);
-    window.addEventListener('touchstart', handleInteraction);
+    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/01/18/audio_03d98c2579.mp3");
+    audioRef.current.loop = true;
     return () => {
-      window.removeEventListener('click', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
+      if (audioRef.current) audioRef.current.pause();
+      audioRef.current = null;
     };
   }, []);
 
-  if (!autoStart || !hasInteracted) return null;
+  useEffect(() => {
+    if (autoStart && audioRef.current && !isPlaying) {
+      audioRef.current.play()
+        .then(() => setIsPlaying(true))
+        .catch(e => console.log("Autoplay blocked:", e));
+    }
+  }, [autoStart, isPlaying]);
 
-  return (
-    <div className="fixed opacity-0 pointer-events-none" style={{ left: '-1000px', top: '-1000px' }}>
-      <iframe
-        width="100"
-        height="100"
-        src="https://www.youtube.com/embed/B2UBMTA57JI?start=248&autoplay=1&loop=1&playlist=B2UBMTA57JI&controls=0&modestbranding=1"
-        title="BGM"
-        allow="autoplay"
-      ></iframe>
-    </div>
-  );
+  return null;
 }
 
 function RSVPSection() {
@@ -168,7 +164,7 @@ function RSVPSection() {
             "We hope you will join us in celebrating our love. Please let us know if you can attend."
           </p>
           <motion.a
-            href="https://wa.me/916379912268?text=Hi! We are happy to confirm our attendance for Tamilarasu and Sowmiya's Wedding."
+            href="https://wa.me/919965270370?text=Hi! We are happy to confirm our attendance for Tamilarasu and Sowmiya's Wedding."
             target="_blank"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -704,7 +700,7 @@ export default function App() {
               </div>
 
               <span className="text-4xl md:text-5xl text-[#f5df9a] italic my-6 opacity-60 font-serif w-full flex justify-center">&</span>
-              
+                            
               <div className="flex flex-col items-center w-full">
                 <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-[#f5df9a] drop-shadow-md tracking-wide mb-2 leading-tight flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full">
                   <span>Dr. R. Sowmiya</span>
@@ -865,27 +861,27 @@ export default function App() {
               className="relative w-full max-w-2xl px-6"
             >
               <div className="absolute -inset-4 bg-yellow-500/5 blur-3xl rounded-full opacity-30 animate-pulse"></div>
-              <motion.div 
+              <motion.div  
                 whileHover={{ y: -10 }}
                 className="relative bg-white/5 border border-white/10 backdrop-blur-xl p-10 md:p-16 rounded-[2rem] text-center shadow-2xl overflow-hidden group"
               >
                 {/* Decorative particles */}
-                <motion.div 
-                  animate={{ 
+                <motion.div  
+                  animate={{  
                     rotate: [0, 360],
                     scale: [1, 1.2, 1]
                   }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="absolute -top-20 -right-20 w-40 h-40 bg-yellow-500/10 rounded-full blur-2xl"
                 />
-                
+                                
                 <div className="relative z-10">
-                  
+                                    
                   <h3 className="font-serif text-[#f2e7c3] text-2xl md:text-4xl uppercase tracking-[0.2em] mb-4">
                     Family & Friends
                   </h3>
                   <div className="w-16 h-[1px] bg-yellow-500/30 mx-auto mb-8"></div>
-                  
+                                    
                   <p className="text-[#f2e7c3]/70 font-serif italic text-base md:text-lg leading-relaxed max-w-sm mx-auto">
                     Together with our relatives and well-wishers, we welcome you to celebrate this joyous occasion.
                   </p>
