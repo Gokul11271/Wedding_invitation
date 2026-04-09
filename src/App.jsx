@@ -124,27 +124,31 @@ function LoadingScreen() {
 }
 
 function BackgroundMusic({ autoStart }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   useEffect(() => {
-    audioRef.current = new Audio("https://cdn.pixabay.com/audio/2022/01/18/audio_03d98c2579.mp3");
-    audioRef.current.loop = true;
+    const handleInteraction = () => setHasInteracted(true);
+    window.addEventListener('click', handleInteraction);
+    window.addEventListener('touchstart', handleInteraction);
     return () => {
-      if (audioRef.current) audioRef.current.pause();
-      audioRef.current = null;
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
     };
   }, []);
 
-  useEffect(() => {
-    if (autoStart && audioRef.current && !isPlaying) {
-      audioRef.current.play()
-        .then(() => setIsPlaying(true))
-        .catch(e => console.log("Autoplay blocked:", e));
-    }
-  }, [autoStart, isPlaying]);
+  if (!autoStart || !hasInteracted) return null;
 
-  return null;
+  return (
+    <div className="fixed opacity-0 pointer-events-none" style={{ left: '-1000px', top: '-1000px' }}>
+      <iframe
+        width="100"
+        height="100"
+        src="https://www.youtube.com/embed/I7ytxuPnkZ0?autoplay=1&loop=1&playlist=I7ytxuPnkZ0&controls=0&modestbranding=1"
+        title="BGM"
+        allow="autoplay"
+      ></iframe>
+    </div>
+  );
 }
 
 function RSVPSection() {
@@ -164,7 +168,7 @@ function RSVPSection() {
             "We hope you will join us in celebrating our love. Please let us know if you can attend."
           </p>
           <motion.a
-            href="https://wa.me/919965270370?text=Hi! We are happy to confirm our attendance for Tamilarasu and Sowmiya's Wedding."
+            href="https://wa.me/916379912268?text=Hi! We are happy to confirm our attendance for Tamilarasu and Sowmiya's Wedding."
             target="_blank"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
