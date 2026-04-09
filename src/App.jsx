@@ -369,6 +369,14 @@ export default function App() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  // Automatically open the invitation after the loading and scroll reveal animations
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsOpened(true);
+    }, 6500); // 3s LoadingScreen + 3.5s Scroll Animation sequence
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.5,
