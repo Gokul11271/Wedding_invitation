@@ -164,7 +164,7 @@ function RSVPSection() {
             "We hope you will join us in celebrating our love. Please let us know if you can attend."
           </p>
           <motion.a
-            href="https://wa.me/919965270370?text=Hi! We are happy to confirm our attendance for Tamilraj and Sowmiya's Wedding."
+            href="https://wa.me/919965270370?text=Hi! We are happy to confirm our attendance for Tamilarasu and Sowmiya's Wedding."
             target="_blank"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
